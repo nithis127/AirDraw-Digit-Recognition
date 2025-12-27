@@ -14,7 +14,7 @@ st.set_page_config(
 )
 
 # =========================================================
-# CSS (UNCHANGED)
+# CSS
 # =========================================================
 st.markdown("""
 <style>
@@ -306,6 +306,9 @@ elif page == "🟢 Live Air-Draw (2s Start)":
     st.markdown("</div>", unsafe_allow_html=True)
 
     if start:
+        if safe_get(f"{BASE_URL}/control?cmd=start") is None:
+            st.stop()
+
         buffer = record_digit()
         X = resample_from_df(buffer, T)
         X = (X - mean) / std
