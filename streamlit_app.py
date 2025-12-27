@@ -127,9 +127,17 @@ FEATURES = ["ax", "ay", "az", "gx", "gy", "gz"]
 # =========================================================
 # LOAD MODEL & NORMALIZATION
 # =========================================================
-model = tf.keras.models.load_model("model/airdraw_model.keras")
-norm = np.load("model/norm_stats.npz")
-mean, std = norm["mean"], norm["std"]
+@st.cache_resource
+def load_model():
+    return tf.keras.models.load_model("model/airdraw_model.keras")
+
+@st.cache_data
+def load_norm_stats():
+    norm = np.load("model/norm_stats.npz")
+    return norm["mean"], norm["std"]
+
+model = load_model()
+mean, std = load_norm_stats()
 
 # =========================================================
 # HELPER FUNCTIONS
