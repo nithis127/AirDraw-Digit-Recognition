@@ -7,10 +7,6 @@ __pycache__/
 dataset/
 *.csv
 
-# Trained models (large files)
-model/*.h5
-model/*.keras
-
 # Notebooks output
 .ipynb_checkpoints/
 
