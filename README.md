@@ -159,8 +159,7 @@ pip install -r requirements.txt
 - OS: Windows
 - Deep Learning Framework: TensorFlow / Keras
 
-⚠️ Note:  
-This project was developed and tested using Python 3.13.2.  
-If dependency issues occur, Python 3.10 is recommended as a fallback for broader library compatibility.
-
+> ⚠️ Note:  
+> This project was developed and tested using Python 3.13.2.
+> If dependency issues occur, Python 3.10 is recommended as a fallback for broader library compatibility.
 ---
