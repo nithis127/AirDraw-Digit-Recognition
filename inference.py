@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 import tensorflow as tf
+import joblib
 
 # Constants
 T = 200
@@ -9,10 +10,8 @@ FEATURES = ["ax", "ay", "az", "gx", "gy", "gz"]
 # Load model
 model = tf.keras.models.load_model("model/airdraw_model.keras")
 
-# Load normalization stats
-norm = np.load("model/norm_stats.npz")
-mean = norm["mean"]
-std = norm["std"]
+# Load StandardScaler instead of mean/std
+scaler = joblib.load("model/standard_scaler.pkl")
 
 def resample_to_T(df, T=200):
     old_len = len(df)
@@ -28,11 +27,18 @@ def resample_to_T(df, T=200):
 def predict_digit(csv_path):
     df = pd.read_csv(csv_path)
 
-    X = resample_to_T(df)
-    X = (X - mean) / std
-    X = X[np.newaxis, :, :]  # shape (1, 200, 6)
+    X = resample_to_T(df)          # (200, 6)
 
-    probs = model.predict(X)[0]
+    # reshape to 2D for scaler
+    X_2d = X.reshape(-1, len(FEATURES))
+
+    # apply scaler
+    X_scaled = scaler.transform(X_2d)
+
+    # reshape back to 3D
+    X_scaled = X_scaled.reshape(1, T, len(FEATURES))
+
+    probs = model.predict(X_scaled)[0]
     pred = np.argmax(probs)
 
     return pred, probs

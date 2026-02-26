@@ -2,6 +2,7 @@ import streamlit as st
 import numpy as np
 import pandas as pd
 import tensorflow as tf
+import joblib
 import requests
 import time
 
@@ -131,13 +132,12 @@ FEATURES = ["ax", "ay", "az", "gx", "gy", "gz"]
 def load_model():
     return tf.keras.models.load_model("model/airdraw_model.keras")
 
-@st.cache_data
-def load_norm_stats():
-    norm = np.load("model/norm_stats.npz")
-    return norm["mean"], norm["std"]
+@st.cache_resource
+def load_scaler():
+    return joblib.load("model/standard_scaler.pkl")
 
 model = load_model()
-mean, std = load_norm_stats()
+scaler = load_scaler()
 
 # =========================================================
 # HELPER FUNCTIONS
@@ -285,11 +285,13 @@ elif page == "📁 Air-Draw Digit Prediction (CSV)":
 
     if uploaded_file:
         df = pd.read_csv(uploaded_file)
-        X = resample_from_df(df, T)
-        X = (X - mean) / std
-        X = X[np.newaxis, :, :]
+        X = resample_from_df(df, T)              # (200, 6)
 
-        preds = model.predict(X)[0]
+        X_2d = X.reshape(-1, len(FEATURES))      # (200, 6)
+        X_scaled = scaler.transform(X_2d)        # scale
+        X_scaled = X_scaled.reshape(1, T, len(FEATURES))
+
+        preds = model.predict(X_scaled)[0]
         idx = int(np.argmax(preds))
         confidence = float(preds[idx])
 
@@ -319,10 +321,12 @@ elif page == "🟢 Live Air-Draw (2s Start)":
 
         buffer = record_digit()
         X = resample_from_df(buffer, T)
-        X = (X - mean) / std
-        X = X[np.newaxis, :, :]
 
-        preds = model.predict(X)[0]
+        X_2d = X.reshape(-1, len(FEATURES))
+        X_scaled = scaler.transform(X_2d)
+        X_scaled = X_scaled.reshape(1, T, len(FEATURES))
+
+        preds = model.predict(X_scaled)[0]
         idx = int(np.argmax(preds))
         confidence = float(preds[idx])
 
