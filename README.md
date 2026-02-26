@@ -50,7 +50,8 @@ Each recording is stored as a CSV file with the following structure:
 
 - Timestamps aligned to start at 0 seconds
 - Each sequence resampled to **T = 200 time steps**
-- Feature normalization using training set mean and standard deviation
+- Feature normalization using StandardScaler (fit on training data only to prevent data leakage)
+- The trained scaler is saved and reused during inference
 - Final input tensor shape: **(200, 6)**
 
 ---
@@ -73,7 +74,7 @@ Each recording is stored as a CSV file with the following structure:
   - Accuracy
   - Precision, Recall, F1-score
   - Confusion Matrix
-- The model generalizes well to unseen air-written samples across varying writing speeds and styles.
+- The model generalizes well to unseen test samples across varying writing speeds within the collected dataset.
 
 ---
 
@@ -116,7 +117,7 @@ Project overview, technical stack, and data source information.
 
 - All dependencies are listed in requirements.txt
 - Random seeds are fixed to ensure repeatable experiments
-- Normalization statistics are saved and reused during inference
+- The trained StandardScaler object is saved and reused during inference to ensure consistent feature scaling
 
 To install dependencies:
 ```bash
