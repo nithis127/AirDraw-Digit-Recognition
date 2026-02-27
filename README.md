@@ -95,9 +95,9 @@ streamlit run streamlit_app.py
 
 ## 🎥 Demo Video
 
-<video width="100%" controls>
-  <source src="demo/airdraw_demo.mp4" type="video/mp4">
-</video>
+[![Watch the AirDraw Demo](https://img.youtube.com/vi/7c2ATEpAzkc/0.jpg)](https://youtu.be/7c2ATEpAzkc)
+
+**AirDraw Demo:** See how the model predicts air-drawn digits in real time!
 
 ---
 
