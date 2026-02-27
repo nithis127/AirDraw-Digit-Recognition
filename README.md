@@ -93,23 +93,11 @@ streamlit run streamlit_app.py
 
 ---
 
-## 📸 Application Screenshots
+## 🎥 Demo Video
 
-### 🏠 Home Page
-Overview of the application with navigation options for CSV-based and live air-draw digit prediction.
-![Home Page](screenshots/home.png)
-
-### 📂 CSV-Based Digit Prediction
-Upload recorded air-draw sensor data in CSV format and receive instant digit predictions with confidence scores.
-![CSV Prediction](screenshots/csv_prediction.png)
-
-### 🟢 Live Air-Draw Prediction
-Real-time digit recognition by drawing digits in the air for 2 seconds using smartphone motion sensors.
-![Live Prediction](screenshots/live_prediction.png)
-
-### ℹ️ About Page
-Project overview, technical stack, and data source information.
-![About Page](screenshots/about.png)
+<video width="100%" controls>
+  <source src="demo/airdraw_demo.mp4" type="video/mp4">
+</video>
 
 ---
 
