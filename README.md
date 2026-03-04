@@ -95,13 +95,28 @@ streamlit run streamlit_app.py
 
 ## 📸 Streamlit Application Screenshots
 
-| 🏠 Home Page | 🎥 Live Prediction |
-|--------------|-------------------|
-| ![](screenshots/home.png) | ![](screenshots/live_prediction.png) |
+<table>
+<tr>
+<td align="center"><b>🏠 Home Page</b></td>
+<td align="center"><b>🎥 Live Prediction</b></td>
+</tr>
 
-| 📂 CSV Prediction | ℹ️ About Page |
-|-------------------|--------------|
-| ![](screenshots/csv_prediction.png) | ![](screenshots/about.png) |
+<tr>
+<td><img src="screenshots/home.png" width="500"></td>
+<td><img src="screenshots/live_prediction.png" width="500"></td>
+</tr>
+
+<tr>
+<td align="center"><b>📂 CSV Prediction</b></td>
+<td align="center"><b>ℹ️ About Page</b></td>
+</tr>
+
+<tr>
+<td><img src="screenshots/csv_prediction.png" width="500"></td>
+<td><img src="screenshots/about.png" width="500"></td>
+</tr>
+
+</table>
 
 ---
 
