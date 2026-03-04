@@ -93,11 +93,29 @@ streamlit run streamlit_app.py
 
 ---
 
+## 📸 Streamlit Application Screenshots
+
+| 🏠 Home Page | 🎥 Live Prediction |
+|--------------|-------------------|
+| ![](screenshots/home.png) | ![](screenshots/live_prediction.png) |
+
+| 📂 CSV Prediction | ℹ️ About Page |
+|-------------------|--------------|
+| ![](screenshots/csv_prediction.png) | ![](screenshots/about.png) |
+
+---
+
 ## 🎥 Demo Video
 
-[![Watch the AirDraw Demo](https://img.youtube.com/vi/7c2ATEpAzkc/0.jpg)](https://youtu.be/7c2ATEpAzkc)
+<p align="center">
+  <a href="https://youtu.be/7c2ATEpAzkc">
+    <img src="https://img.youtube.com/vi/7c2ATEpAzkc/maxresdefault.jpg" width="600">
+  </a>
+</p>
 
-**AirDraw Demo:** See how the model predicts air-drawn digits in real time!
+<p align="center">
+<strong>AirDraw Demo:</strong> See how the model predicts air-drawn digits in real time!
+</p>
 
 ---
 
